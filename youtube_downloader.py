@@ -1,24 +1,18 @@
 from pytube import YouTube
 import os
-#Asking for the video link 
+import sys
 
-link = input("Please Enter the video link : ")
-#Youtube object 
+#customizing the command 
+link = str(sys.argv[1])
 
-yt = YouTube(link)
-print("Title : ",yt.title)
-print("You want to download it ? (Y/N)")
-confirmation = input()
-
-if confirmation == "Y" or "y":
+def download():
+    yt = YouTube(link)
     stream = yt.streams.filter(progressive=True)
-    print(stream)
-    tag = int(input("\nEnter the itag of your preferred stream to download: "))
-    video = yt.streams.get_by_itag(tag)
+    video = yt.streams.get_highest_resolution()
     print("\nDownloading ...")
     vd = video.download()
     print("The Download is completed !")
 
-else :
-    print("bye")
-    exit()
+if __name__ == "__main__":
+    download()
+
