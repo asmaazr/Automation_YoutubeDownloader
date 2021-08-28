@@ -17,8 +17,6 @@ if confirmation == "Y" or "y":
     video = yt.streams.get_by_itag(tag)
     print("\nDownloading ...")
     vd = video.download()
-    vid = open(os.path.join("./", yt.title+".mp4"),"w")
-    vid.write(vd)
     print("The Download is completed !")
 
 else :
